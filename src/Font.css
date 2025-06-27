@@ -1,0 +1,35 @@
+/* src/fonts.css */
+@font-face {
+  font-family: 'Disolve_regular';
+  src: url('./src/fonts/Disolve_regular.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Disolve_light';
+  src: url('./src/fonts/Disolve_light.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins-Light';
+  src: url('./src/fonts/Poppins-Light.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url('./src/fonts/Poppins-Regular.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins-SemiBold';
+  src: url('./src/fonts/Poppins-SemiBold.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
