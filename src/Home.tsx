@@ -217,7 +217,7 @@ function Home() {
 
 				{/* Featured Products Section */}
 				<Box sx={{ backgroundColor: "white", m: 0, p: 0, textAlign: "center" }}>
-					<Container maxWidth={false} disableGutters sx={{ px: 4 }}>
+					<Container maxWidth={false} disableGutters sx={{ px: {xs: '2rem', sm:'3rem',md:'4rem'} }}>
 						<Box sx={{ textAlign: "center", mb: 6, paddingTop: "6rem" }}>
 							<Typography
 								variant="h2"
@@ -279,12 +279,11 @@ function Home() {
 								>
 									<Card
 										sx={{
-											width: "650px",
+											width: {md: '400px',lg:'650px'},
 											height: "100%",
 											borderRadius: 3,
 											overflow: "hidden",
-											transition: "all 0.3s ease",
-											
+											transition: "all 0.4s ease",
 											"&:hover": {
 												transform: "translateY(-8px)",
 												boxShadow: "0 12px 35px rgba(0,0,0,0.15)",
