@@ -16,9 +16,8 @@ import DrawerAppBar from "./components/AppBar";
 import "./Font.css";
 import nlpOffsetLogo from "./assets/nlp_offset.svg";
 import ledImage from "./assets/LED.png";
-import displayImage from "./assets/Display.png"
-import tarpImage from "./assets/Tarp.png"
-
+import displayImage from "./assets/Display.png";
+import tarpImage from "./assets/Tarp.png";
 
 // Updated video import - try different approaches
 import videoSource from "./assets/HomeBG.mp4"; // Use import instead of string path
@@ -42,8 +41,7 @@ function Home() {
 			title: "LED WALL",
 			description:
 				"High-resolution LED displays perfect for large-scale advertising and events. Stunning visual impact with vibrant colors.",
-			image:
-				ledImage,
+			image: ledImage,
 			features: ["4K Resolution", "Outdoor Ready", "Modular Design"],
 		},
 		{
@@ -51,26 +49,24 @@ function Home() {
 			description:
 				"Interactive digital kiosks for customer engagement and self-service solutions. Modern touch interface technology.",
 
-			image:
-				displayImage,
+			image: displayImage,
 			features: ["Touch Screen", "24/7 Operation", "Custom Software"],
 		},
-		{
-			title: "DIGITAL DISPLAY",
-			description:
-				"Versatile digital signage solutions for retail, corporate, and hospitality environments. Smart content management.",
+		// {
+		// 	title: "DIGITAL DISPLAY",
+		// 	description:
+		// 		"Versatile digital signage solutions for retail, corporate, and hospitality environments. Smart content management.",
 
-			image:
-				"https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop",
-			features: ["Cloud Based", "Real-time Updates", "Multi-format Support"],
-		},
+		// 	image:
+		// 		"https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop",
+		// 	features: ["Cloud Based", "Real-time Updates", "Multi-format Support"],
+		// },
 		{
 			title: "TARPAULIN PRINTER",
 			description:
 				"Professional large-format printing solutions for banners, signage, and promotional materials. Premium quality output.",
 
-			image:
-				tarpImage,
+			image: tarpImage,
 			features: ["Large Format", "Weather Resistant", "Fast Production"],
 		},
 	];
@@ -165,8 +161,9 @@ function Home() {
 								textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
 								letterSpacing: "0.1em",
 								mb: 2,
-								fontSize: isMobile ? "3rem" : "6rem",
+								fontSize: { xs: "2rem", sm: "3rem", md: "4rem", lg: "6rem" },
 								fontFamily: "Disolve_regular",
+								transition: "all 0.3s ease",
 							}}
 						>
 							NEWLINE PLUS
@@ -180,6 +177,13 @@ function Home() {
 								maxWidth: "700px",
 								mx: "auto",
 								fontFamily: "Poppins-Light",
+								fontSize: {
+									xs: "0.8rem",
+									sm: "1rem",
+									md: "1.5rem",
+									lg: "2rem",
+								},
+								transition: "all 0.3s ease",
 							}}
 						>
 							Innovation in Digital Display Solutions
@@ -192,7 +196,12 @@ function Home() {
 								px: 4,
 								py: 1.5,
 								borderRadius: 1.5,
-								fontSize: "1.1rem",
+								fontSize: {
+									xs: "0.6rem",
+									sm: "0.7",
+									md: "0.9rem",
+									lg: "1.1rem",
+								},
 								"&:hover": {
 									backgroundColor: "#4BA8FF",
 									transform: "translateY(-2px)",
@@ -207,8 +216,8 @@ function Home() {
 				</Box>
 
 				{/* Featured Products Section */}
-				<Box sx={{ backgroundColor: "white", m: 0, p: 0 }}>
-					<Container maxWidth={false} disableGutters sx={{ px: 0 }}>
+				<Box sx={{ backgroundColor: "white", m: 0, p: 0, textAlign: "center" }}>
+					<Container maxWidth={false} disableGutters sx={{ px: 4 }}>
 						<Box sx={{ textAlign: "center", mb: 6, paddingTop: "6rem" }}>
 							<Typography
 								variant="h2"
@@ -217,6 +226,13 @@ function Home() {
 									mb: 2,
 									color: "#333",
 									fontFamily: "Poppins-SemiBold",
+									fontSize: {
+										xs: "2.5rem",
+										sm: "3rem",
+										md: "3.8rem",
+										lg: "4.2rem",
+									},
+									transition: "all 0.3s ease",
 								}}
 							>
 								Featured Products
@@ -224,10 +240,18 @@ function Home() {
 							<Typography
 								variant="h6"
 								sx={{
+									px: "1rem",
 									color: "#666",
 									maxWidth: "800px",
 									mx: "auto",
 									fontFamily: "Poppins-Light",
+									fontSize: {
+										xs: "0.8rem",
+										sm: "0.9rem",
+										md: "1.2rem",
+										lg: "1.3rem",
+									},
+									transition: "all 0.3s ease",
 								}}
 							>
 								Discover our comprehensive range of digital display and printing
@@ -250,7 +274,8 @@ function Home() {
 								<Grid
 									item
 									xs={12}
-									sx={{ display: "flex", justifyContent: "center" }}
+									sx={{ display: "flex",  }}
+									textAlign={'left'}
 								>
 									<Card
 										sx={{
@@ -259,6 +284,7 @@ function Home() {
 											borderRadius: 3,
 											overflow: "hidden",
 											transition: "all 0.3s ease",
+											
 											"&:hover": {
 												transform: "translateY(-8px)",
 												boxShadow: "0 12px 35px rgba(0,0,0,0.15)",
@@ -283,36 +309,46 @@ function Home() {
 											>
 												<Typography
 													variant="h5"
-													sx={{ ml: 2, fontWeight: "bold", fontFamily: 'Poppins-SemiBold' }}
+													sx={{
+														ml: 2,
+														fontWeight: "bold",
+														fontFamily: "Poppins-SemiBold",
+													}}
 												>
 													{product.title}
 												</Typography>
 											</Box>
 											<Typography
 												variant="body1"
-												sx={{ color: "#666", mb: 3, lineHeight: 1.6, fontFamily: 'Poppins-Regular', paddingX: '1rem' }}
+												sx={{
+													color: "#666",
+													mb: 3,
+													lineHeight: 1.6,
+													fontFamily: "Poppins-Regular",
+													paddingX: "1rem",
+												}}
 											>
 												{product.description}
 											</Typography>
-											<Box sx={{ mb: 3 }}>
+											<Box sx={{ mb: 3, marginX: 2 }}>
 												{product.features.map((feature, idx) => (
 													<Chip
 														key={idx}
 														label={feature}
 														size="medium"
 														sx={{
-                              py: '1rem',
-                              borderRadius: 2,
-															backgroundColor: "#f0f8ff",
-															color: "#1976d2",
+															fontFamily: "Poppins-Light",
+															py: "1rem",
+															borderRadius: 2,
+															backgroundColor: "#4BA8FF",
+															color: "#ffffff",
 															mr: 2,
 															mb: 1,
-															fontSize: "1.03rem",
+															fontSize: "0.8rem",
 														}}
 													/>
 												))}
 											</Box>
-										
 										</CardContent>
 									</Card>
 								</Grid>
@@ -321,7 +357,7 @@ function Home() {
 
 						<Box
 							sx={{
-                paddingBottom: 20,
+								paddingBottom: 20,
 								backgroundColor: "#ffffff",
 								textAlign: "center",
 								px: 2,
@@ -340,13 +376,19 @@ function Home() {
 							<Typography
 								variant="h1"
 								sx={{
-									fontFamily: "Disolve_regular", // 👈 ensure this matches your loaded font
-									fontSize: "3rem",
+									fontFamily: "Disolve_regular",
 									fontWeight: 400,
 									mb: 3,
+									fontSize: {
+										xs: "2.5rem",
+										sm: "3rem",
+										md: "3.8rem",
+										lg: "4.2rem",
+									},
+									transition: "all 0.3s ease",
 								}}
 							>
-								NEwLINE PLUS
+								NEWLINE PLUS
 							</Typography>
 							<Typography
 								variant="body1"
@@ -356,6 +398,13 @@ function Home() {
 									color: "#333",
 									fontFamily: "Poppins-Light",
 									lineHeight: 1.8,
+									fontSize: {
+										xs: "0.8rem",
+										sm: "0.9rem",
+										md: "1.2rem",
+										lg: "1.3rem",
+									},
+									transition: "all 0.3s ease",
 								}}
 							>
 								Lorem ipsum dolor sit amet consectetur. Suspendisse proin
@@ -371,18 +420,46 @@ function Home() {
 				{/* Call to Action Section */}
 				<Box
 					sx={{
-						background: "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+						background: "#00519C",
 						color: "white",
 						m: 0,
 						p: 0,
 					}}
 				>
-					<Container maxWidth="lg" sx={{ px: 2 }}>
+					<Container maxWidth="lg" sx={{ px: 2, py: "7rem" }}>
 						<Box sx={{ textAlign: "center" }}>
-							<Typography variant="h4" sx={{ fontWeight: "bold", mb: 2 }}>
+							<Typography
+								variant="h6"
+								sx={{
+									fontFamily: "Poppins-Regular",
+									mb: 2,
+									fontSize: {
+										xs: "1.2rem",
+										sm: "1.5rem",
+										md: "1.8rem",
+										lg: "2rem",
+									},
+									transition: "all 0.3s ease",
+								}}
+							>
 								Ready to Transform Your Visual Communication?
 							</Typography>
-							<Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
+							<Typography
+								variant="body1"
+								sx={{
+									px: "4rem",
+									mb: 4,
+									opacity: 0.9,
+									fontFamily: "Poppins-Regular",
+									fontSize: {
+										xs: "0.7rem",
+										sm: "0.85rem",
+										md: "0.95rem",
+										lg: "1rem",
+									},
+									transition: "all 0.3s ease",
+								}}
+							>
 								Contact us today to discuss your digital display and printing
 								needs
 							</Typography>
