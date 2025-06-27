@@ -12,7 +12,6 @@ import {
 	useTheme,
 	useMediaQuery,
 } from "@mui/material";
-import DrawerAppBar from "./components/AppBar";
 import "./Font.css";
 import nlpOffsetLogo from "./assets/nlp_offset.svg";
 import ledImage from "./assets/LED.png";
@@ -72,7 +71,7 @@ function Home() {
 	];
 
 	return (
-		<DrawerAppBar>
+		
 			<Box>
 				{/* Hero Section with Video Background */}
 				<Box
@@ -199,8 +198,8 @@ function Home() {
 								fontSize: {
 									xs: "0.6rem",
 									sm: "0.7",
-									md: "0.9rem",
-									lg: "1.1rem",
+									md: "0.8rem",
+									lg: "0.9rem",
 								},
 								"&:hover": {
 									backgroundColor: "#4BA8FF",
@@ -217,7 +216,11 @@ function Home() {
 
 				{/* Featured Products Section */}
 				<Box sx={{ backgroundColor: "white", m: 0, p: 0, textAlign: "center" }}>
-					<Container maxWidth={false} disableGutters sx={{ px: {xs: '2rem', sm:'3rem',md:'4rem'} }}>
+					<Container
+						maxWidth={false}
+						disableGutters
+						sx={{ px: { xs: "2rem", sm: "3rem", md: "4rem" } }}
+					>
 						<Box sx={{ textAlign: "center", mb: 6, paddingTop: "6rem" }}>
 							<Typography
 								variant="h2"
@@ -266,20 +269,15 @@ function Home() {
 								m: 0,
 								width: "100%",
 								paddingTop: "3rem",
-								paddingBottom: "9rem",
+								paddingBottom: {xs: '6rem', md:'9rem'},
 								placeContent: "center",
 							}}
 						>
 							{products.map((product) => (
-								<Grid
-									item
-									xs={12}
-									sx={{ display: "flex",  }}
-									textAlign={'left'}
-								>
+								<Grid item xs={12} sx={{ display: "flex" }} textAlign={"left"}>
 									<Card
 										sx={{
-											width: {md: '400px',lg:'650px'},
+											maxWidth: { sm: "800px", md: "450px", lg: "600px" },
 											height: "100%",
 											borderRadius: 3,
 											overflow: "hidden",
@@ -292,16 +290,24 @@ function Home() {
 									>
 										<CardMedia
 											component="img"
-											height="500"
 											image={product.image}
 											alt={product.title}
 											sx={{
+												width: "100%",
+												height: {
+													xs: 200, // mobile
+													sm: 300, // tablets
+													md: 350, // small desktop
+													lg: 500, // large screens
+												},
+												objectFit: "cover",
 												transition: "transform 0.3s ease",
 												"&:hover": {
 													transform: "scale(1.05)",
 												},
 											}}
 										/>
+
 										<CardContent>
 											<Box
 												sx={{ display: "flex", alignItems: "center", mb: 2 }}
@@ -312,6 +318,13 @@ function Home() {
 														ml: 2,
 														fontWeight: "bold",
 														fontFamily: "Poppins-SemiBold",
+														fontSize: {
+															xs: "1.2rem",
+															sm: "1.5",
+															md: "1.6rem",
+															lg: "1.7rem",
+														},
+														transition: "all 0.4s ease",
 													}}
 												>
 													{product.title}
@@ -325,6 +338,13 @@ function Home() {
 													lineHeight: 1.6,
 													fontFamily: "Poppins-Regular",
 													paddingX: "1rem",
+													fontSize: {
+														xs: "0.75rem",
+														sm: "0.9rem",
+														md: "0.95rem",
+														lg: "1rem",
+													},
+													transition: "all 0.3s ease",
 												}}
 											>
 												{product.description}
@@ -342,8 +362,12 @@ function Home() {
 															backgroundColor: "#4BA8FF",
 															color: "#ffffff",
 															mr: 2,
-															mb: 1,
-															fontSize: "0.8rem",
+															fontSize: {
+																xs: "0.65rem",
+																sm: "0.75rem",
+																md: " 0.8rem",
+																lg: "0.9rem",
+															},
 														}}
 													/>
 												))}
@@ -367,7 +391,7 @@ function Home() {
 								src={nlpOffsetLogo}
 								alt="Triangle Logo"
 								sx={{
-									height: 200,
+									height: {xs: 90, sm: 100, md: 150, lg:200},
 									mb: 3,
 								}}
 							/>
@@ -379,7 +403,7 @@ function Home() {
 									fontWeight: 400,
 									mb: 3,
 									fontSize: {
-										xs: "2.5rem",
+										xs: "2.1rem",
 										sm: "3rem",
 										md: "3.8rem",
 										lg: "4.2rem",
@@ -406,11 +430,17 @@ function Home() {
 									transition: "all 0.3s ease",
 								}}
 							>
-								Lorem ipsum dolor sit amet consectetur. Suspendisse proin
-								interdum egestas augue ultrices pretium diam lorem id. Egestas
-								turpis non consectetur a consectetur ut nec diam. Ut nunc vel
-								dui donec convallis et amet ornare. Vestibulum placerat
-								adipiscing convallis integer.
+								Newline Plus aims to revolutionize the way businesses
+								communicate visually. By offering cutting-edge digital display
+								and large-format printing solutions, we empower brands to make
+								bold, lasting impressions in both physical and digital spaces.
+								<br />
+								<br />
+								Discover our comprehensive range of digital display and printing
+								solutions designed to elevate your business presence. Whether
+								you're showcasing a product, guiding customers, or broadcasting
+								key information, Newline Plus provides the tools to do it with
+								clarity, style, and impact.
 							</Typography>
 						</Box>
 					</Container>
@@ -425,7 +455,13 @@ function Home() {
 						p: 0,
 					}}
 				>
-					<Container maxWidth="lg" sx={{ px: 2, py: "7rem" }}>
+					<Container
+						maxWidth="lg"
+						sx={{
+							px: 2,
+							py: { xs: "4rem", sm: "5rem", md: "6rem", lg: "7rem" },
+						}}
+					>
 						<Box sx={{ textAlign: "center" }}>
 							<Typography
 								variant="h6"
@@ -462,31 +498,28 @@ function Home() {
 								Contact us today to discuss your digital display and printing
 								needs
 							</Typography>
-							<Button
-								variant="contained"
-								size="large"
+							<Typography
+								variant="body1"
 								sx={{
-									backgroundColor: "white",
-									color: "#1976d2",
-									px: 4,
-									py: 1.5,
-									borderRadius: 2,
-									fontSize: "1.1rem",
-									"&:hover": {
-										backgroundColor: "#f5f5f5",
-										transform: "translateY(-2px)",
-										boxShadow: "0 8px 25px rgba(255,255,255,0.3)",
+									px: "4rem",
+									mb: 0,
+									opacity: 0.9,
+									fontFamily: "Poppins-Light",
+									fontSize: {
+										xs: "0.7rem",
+										sm: "0.85rem",
+										md: "0.95rem",
+										lg: "1rem",
 									},
 									transition: "all 0.3s ease",
 								}}
 							>
-								Get Quote
-							</Button>
+								09875645632 | 09875645632 | 09875645632
+							</Typography>
 						</Box>
 					</Container>
 				</Box>
 			</Box>
-		</DrawerAppBar>
 	);
 }
 
