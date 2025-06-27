@@ -362,6 +362,7 @@ function Home() {
 															backgroundColor: "#4BA8FF",
 															color: "#ffffff",
 															mr: 2,
+															mb:1,
 															fontSize: {
 																xs: "0.65rem",
 																sm: "0.75rem",
