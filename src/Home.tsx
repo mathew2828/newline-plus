@@ -19,10 +19,10 @@ import nlpOffsetLogo from "./assets/nlp_offset.svg";
 import ledImage from "./assets/LED.png";
 import displayImage from "./assets/Display.png";
 import tarpImage from "./assets/Tarp.png";
+import interactImage from "./assets/Inter.png";
 import Zoom from "@mui/material/Zoom";
 import videoSource from "./assets/HomeBG.mp4";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 
 function Home() {
 	const theme = useTheme();
@@ -82,21 +82,40 @@ function Home() {
 			description:
 				"High-resolution LED displays perfect for large-scale advertising and events. Stunning visual impact with vibrant colors.",
 			image: ledImage,
-			features: ["4K Resolution", "Outdoor Ready", "Modular Design"],
+			features: ["High-resolution wall display", "Outdoor ready", "Modular design", "High luminance"],
 		},
 		{
 			title: "KIOSK",
 			description:
-				"Interactive digital kiosks for customer engagement and self-service solutions. Modern touch interface technology.",
+				"Interactive digital kiosk for customer engagement and self-service solutions. Modern touch interface technology.",
 			image: displayImage,
-			features: ["Touch Screen", "24/7 Operation", "Custom Software"],
+			features: [
+				"43”-65” inch LCD Display",
+				"Screen Ratio: 16:9",
+				"Intel Core i5 / i7",
+				"RAM: up to 16GB",
+				"Storage: up to 512GB",
+			],
+		},
+		{
+			title: "INTERACTIVE SMARTBOARD",
+			description:
+				"A UHD display that blends sleek design with smart functionality. Its ultra-thin metal frame and anti-glare toughened glass ensure durability and clear visibility. With high-precision infrared touch, it offers smooth interaction for classrooms or offices",
+			image: interactImage,
+			features: [
+				"Modular design",
+				"High-precision infrared touch",
+				"Optimized sound design",
+				"Ultra-thin design",
+				"Built-in smart features"
+			],
 		},
 		{
 			title: "TARPAULIN PRINTER",
 			description:
 				"Professional large-format printing solutions for banners, signage, and promotional materials. Premium quality output.",
 			image: tarpImage,
-			features: ["Large Format", "Weather Resistant", "Fast Production"],
+			features: ["High-resolution prints", "Durable materials", "Fast and efficient printing"],
 		},
 	];
 
@@ -133,12 +152,6 @@ function Home() {
 	}, []);
 
 	return (
-		<motion.div
-		initial={{ opacity: 0, y: 20 }}
-		animate={{ opacity: 1, y: 0 }}
-		exit={{ opacity: 0, y: -20 }}
-		transition={{ duration: 0.5 }}
-	>
 		<Box>
 			{/* Hero Section */}
 			<Box
@@ -240,7 +253,7 @@ function Home() {
 				<Container
 					maxWidth={false}
 					disableGutters
-					sx={{ px: { xs: "2rem", sm: "3rem", md: "4rem" } }}
+					sx={{ px: { xs: "1.4rem", sm: "3rem", md: "4rem" } }}
 				>
 					<Box sx={{ mb: 6, paddingTop: "6rem" }}>
 						<Typography
@@ -287,7 +300,7 @@ function Home() {
 						spacing={4}
 						sx={{
 							paddingBottom: { xs: "6rem", md: "9rem" },
-							px: { xs: "3rem", lg: "10rem" },
+							px: { xs: "1rem", lg: "10rem" },
 							placeContent: "center",
 						}}
 					>
@@ -521,16 +534,15 @@ function Home() {
 									md: "0.95rem",
 									lg: "1rem",
 								},
+								pt: '2rem'
 							}}
 						>
-							09875645632 | 09875645632 | 09875645632
+							684 Shibei Industrial Road, Dashi Street, Panyu District, Guangzhou, Guangdong, China
 						</Typography>
 					</Box>
 				</Container>
 			</Box>
 		</Box>
-	</motion.div>
-		
 	);
 }
 

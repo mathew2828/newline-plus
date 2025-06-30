@@ -1,17 +1,13 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DrawerAppBar from "./components/AppBar";
 import Home from "./Home";
 import Products from "./Products";
 
-// Component to handle routing with animations
-function AnimatedRoutes() {
-  const location = useLocation();
-
+function App() {
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
+    <BrowserRouter>
+      <Routes>
         <Route
           path="/"
           element={
@@ -29,14 +25,6 @@ function AnimatedRoutes() {
           }
         />
       </Routes>
-    </AnimatePresence>
-  );
-}
-
-function App() {
-  return (
-    <BrowserRouter>
-      <AnimatedRoutes />
     </BrowserRouter>
   );
 }
