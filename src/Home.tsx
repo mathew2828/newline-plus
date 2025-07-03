@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import {
 	Box,
 	Container,
@@ -27,11 +27,11 @@ import { useNavigate } from "react-router-dom";
 function Home() {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-	const videoRef = useRef(null);
+	const videoRef = useRef<HTMLVideoElement | null>(null);
 
 	useEffect(() => {
 		if (videoRef.current) {
-			videoRef.current.play().catch((error) => {
+			videoRef.current.play().catch((error: any) => {
 				console.log("Video autoplay failed:", error);
 			});
 		}
@@ -47,7 +47,7 @@ function Home() {
 	}, []);
 
 	// Add to your component's state and refs:
-	const logoRef = useRef(null);
+	const logoRef = useRef<HTMLDivElement>(null);
 	const [logoVisible, setLogoVisible] = useState(false);
 
 	// Extend useEffect to observe logoRef
@@ -82,7 +82,12 @@ function Home() {
 			description:
 				"High-resolution LED displays perfect for large-scale advertising and events. Stunning visual impact with vibrant colors.",
 			image: ledImage,
-			features: ["High-resolution wall display", "Outdoor ready", "Modular design", "High luminance"],
+			features: [
+				"High-resolution wall display",
+				"Outdoor ready",
+				"Modular design",
+				"High luminance",
+			],
 		},
 		{
 			title: "KIOSK",
@@ -90,7 +95,7 @@ function Home() {
 				"Interactive digital kiosk for customer engagement and self-service solutions. Modern touch interface technology.",
 			image: displayImage,
 			features: [
-				"43”-65” inch LCD Display",
+				'43"-65" inch LCD Display',
 				"Screen Ratio: 16:9",
 				"Intel Core i5 / i7",
 				"RAM: up to 16GB",
@@ -107,7 +112,7 @@ function Home() {
 				"High-precision infrared touch",
 				"Optimized sound design",
 				"Ultra-thin design",
-				"Built-in smart features"
+				"Built-in smart features",
 			],
 		},
 		{
@@ -115,25 +120,34 @@ function Home() {
 			description:
 				"Professional large-format printing solutions for banners, signage, and promotional materials. Premium quality output.",
 			image: tarpImage,
-			features: ["High-resolution prints", "Durable materials", "Fast and efficient printing"],
+			features: [
+				"High-resolution prints",
+				"Durable materials",
+				"Fast and efficient printing",
+			],
 		},
 	];
 
 	// Track visibility of each card for Grow animation
-	const [visibleCards, setVisibleCards] = useState([]);
-	const cardRefs = useRef([]);
+	const [visibleCards, setVisibleCards] = useState<boolean[]>(
+		new Array(products.length).fill(false)
+	);
+	const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
-					const index = parseInt(entry.target.getAttribute("data-index"));
-					if (entry.isIntersecting) {
-						setVisibleCards((prev) => {
-							const updated = [...prev];
-							updated[index] = true;
-							return updated;
-						});
+					const indexAttr = entry.target.getAttribute("data-index");
+					if (indexAttr !== null) {
+						const index = parseInt(indexAttr);
+						if (entry.isIntersecting) {
+							setVisibleCards((prev) => {
+								const updated = [...prev];
+								updated[index] = true;
+								return updated;
+							});
+						}
 					}
 				});
 			},
@@ -305,11 +319,13 @@ function Home() {
 						}}
 					>
 						{products.map((product, index) => (
-							<Grid item key={index} sx={{ display: "flex" }} textAlign="left">
+							<Grid key={index} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
 								<div
-									ref={(el) => (cardRefs.current[index] = el)}
+									ref={(el: HTMLDivElement | null) => {
+										cardRefs.current[index] = el;
+									}}
 									data-index={index}
-									style={{ width: "100%" }}
+									style={{ width: "100%", height: "100%" }}
 								>
 									<Grow in={visibleCards[index]} timeout={1000}>
 										<Card
@@ -450,7 +466,6 @@ function Home() {
 									variant="body1"
 									sx={{
 										color: "#666",
-
 										lineHeight: 1.6,
 										fontFamily: "Poppins-Regular",
 										paddingX: { md: "8rem", lg: "20rem" },
@@ -534,10 +549,11 @@ function Home() {
 									md: "0.95rem",
 									lg: "1rem",
 								},
-								pt: '2rem'
+								pt: "2rem",
 							}}
 						>
-							684 Shibei Industrial Road, Dashi Street, Panyu District, Guangzhou, Guangdong, China
+							684 Shibei Industrial Road, Dashi Street, Panyu District,
+							Guangzhou, Guangdong, China
 						</Typography>
 					</Box>
 				</Container>

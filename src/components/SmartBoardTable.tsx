@@ -9,7 +9,6 @@ import {
 	TableRow,
 	Typography,
 } from "@mui/material";
-import React from "react";
 
 const DisplaySpecsTable = () => {
 	const tableData = [
@@ -367,41 +366,6 @@ const DisplaySpecsTable = () => {
 
 	const screenSizes = ['55"', '65"', '75"', '85"', '86"', '98"'];
 
-	const getCategoryColor = (categoryIndex) => {
-		const colors = [
-			"from-purple-600 to-purple-700 border-purple-700", // Display
-			"from-teal-600 to-teal-700 border-teal-700", // Panel Technology
-			"from-orange-600 to-orange-700 border-orange-700", // Build and Power
-			"from-green-600 to-green-700 border-green-700", // System
-			"from-indigo-600 to-indigo-700 border-indigo-700", // Connectivity
-			"from-pink-600 to-pink-700 border-pink-700", // Touch Technology
-		];
-		return colors[categoryIndex % colors.length];
-	};
-
-	const getCategoryBgColor = (categoryIndex) => {
-		const bgColors = [
-			"bg-purple-100 text-purple-800 border-purple-200", // Display
-			"bg-teal-100 text-teal-800 border-teal-200", // Panel Technology
-			"bg-orange-100 text-orange-800 border-orange-200", // Build and Power
-			"bg-green-100 text-green-800 border-green-200", // System
-			"bg-indigo-100 text-indigo-800 border-indigo-200", // Connectivity
-			"bg-pink-100 text-pink-800 border-pink-200", // Touch Technology
-		];
-		return bgColors[categoryIndex % bgColors.length];
-	};
-
-	const getSpecBgColor = (categoryIndex) => {
-		const specBgColors = [
-			"bg-purple-50 border-purple-100", // Display
-			"bg-teal-50 border-teal-100", // Panel Technology
-			"bg-orange-50 border-orange-100", // Build and Power
-			"bg-green-50 border-green-100", // System
-			"bg-indigo-50 border-indigo-100", // Connectivity
-			"bg-pink-50 border-pink-100", // Touch Technology
-		];
-		return specBgColors[categoryIndex % specBgColors.length];
-	};
 
 	const categoryColors = [
 		"#ede7f6",
@@ -469,7 +433,7 @@ const DisplaySpecsTable = () => {
 							>
 								Specification
 							</TableCell>
-							{screenSizes.map((size, i) => (
+							{screenSizes.map((size, _i) => (
 								<TableCell
 									key={size}
 									sx={{

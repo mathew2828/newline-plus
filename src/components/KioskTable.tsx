@@ -1,4 +1,3 @@
-import React from "react";
 import {
 	Table,
 	TableBody,
@@ -13,14 +12,14 @@ import {
 	Grid,
 } from "@mui/material";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const StyledTableCell = styled(TableCell)(({ }) => ({
 	fontWeight: "bold",
 	backgroundColor: "#f5f5f5",
 	borderRight: "1px solid #ddd",
 	fontFamily: "Poppins-SemiBold",
 }));
 
-const RedHeaderCell = styled(TableCell)(({ theme }) => ({
+const RedHeaderCell = styled(TableCell)(({ }) => ({
 	backgroundColor: "#00519C",
 	color: "white",
 	fontWeight: "bold",
@@ -28,7 +27,7 @@ const RedHeaderCell = styled(TableCell)(({ theme }) => ({
 	fontFamily: "Poppins-SemiBold",
 }));
 
-const SizeHeaderCell = styled(TableCell)(({ theme }) => ({
+const SizeHeaderCell = styled(TableCell)(({ }) => ({
 	backgroundColor: "#e3f2fd",
 	fontWeight: "bold",
 	textAlign: "center",
@@ -36,7 +35,7 @@ const SizeHeaderCell = styled(TableCell)(({ theme }) => ({
 	fontFamily: "Poppins-SemiBold",
 }));
 
-const DataCell = styled(TableCell)(({ theme }) => ({
+const DataCell = styled(TableCell)(({ }) => ({
 	textAlign: "center",
 	borderRight: "1px solid #ddd",
 	fontFamily: "Poppins-Regular",

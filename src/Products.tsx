@@ -195,7 +195,7 @@ const Products: React.FC = () => {
 
 	return (
 		<>
-			<Box sx={{ textAlign: "center", mb: 8 , pt: '10rem'}}>
+			<Box sx={{ textAlign: "center", mb: 8, pt: "10rem" }}>
 				<Zoom in={true} timeout={1000} style={{ transitionDelay: "200ms" }}>
 					<Typography
 						variant="h5"
@@ -263,7 +263,9 @@ const Products: React.FC = () => {
 				<React.Fragment key={index}>
 					<Grow in={visibleProducts[index]} timeout={800}>
 						<Box
-							ref={(el) => (productRefs.current[index] = el)}
+							ref={(el: HTMLElement | null) => {
+								productRefs.current[index] = el;
+							}}
 							sx={{
 								mb: product.showTable ? 6 : 12,
 								px: { xs: "2rem", sm: "4rem", md: "5rem", lg: "8rem" },
@@ -276,7 +278,7 @@ const Products: React.FC = () => {
 								sx={{ placeContent: "center" }}
 							>
 								{/* Image */}
-								<Grid item size={{ xs: 12, md: 6 }}>
+								<Grid size={{ xs: 12, md: 6 }}>
 									<Box
 										sx={{
 											width: "100%",
@@ -304,7 +306,7 @@ const Products: React.FC = () => {
 								</Grid>
 
 								{/* Content */}
-								<Grid item size={{ xs: 12, md: 6 }}>
+								<Grid size={{ xs: 12, md: 6 }}>
 									<Box sx={{ pl: { md: 4 } }}>
 										<Typography
 											variant="h3"
@@ -505,7 +507,7 @@ const Products: React.FC = () => {
 							Contact us today to discuss your digital display and printing
 							needs
 						</Typography>
-							
+
 						<Typography
 							variant="body1"
 							sx={{
