@@ -1,16 +1,39 @@
+import React from "react";
 import {
-	Box,
-	Paper,
 	Table,
 	TableBody,
 	TableCell,
 	TableContainer,
 	TableHead,
 	TableRow,
+	Paper,
 	Typography,
+	Button,
+	Dialog,
+	DialogContent,
+	IconButton,
+	Box,
+	Chip,
+	Card,
+	CardContent,
+	Alert,
+	AlertTitle,
+	Toolbar,
+	AppBar,
 } from "@mui/material";
+import {
+	Download,
+	Close,
+	Description,
+	OpenInNew,
+	PictureAsPdf,
+} from "@mui/icons-material";
+import PDF_ from "../assets/NewlinePlus_.pdf";
 
 const DisplaySpecsTable = () => {
+	const [pdfModalOpen, setPdfModalOpen] = React.useState(false);
+	const [pdfError, setPdfError] = React.useState(false);
+
 	const tableData = [
 		{
 			category: "Display",
@@ -366,33 +389,44 @@ const DisplaySpecsTable = () => {
 
 	const screenSizes = ['55"', '65"', '75"', '85"', '86"', '98"'];
 
-
 	const categoryColors = [
-		"#ede7f6",
-		"#e0f7fa",
-		"#fff3e0",
-		"#e8f5e9",
-		"#e3f2fd",
-		"#fce4ec",
+		"#e3f2fd", // Light blue
+		"#e8f5e9", // Light green
+		"#fff3e0", // Light orange
+		"#f3e5f5", // Light purple
+		"#e0f2f1", // Light teal
+		"#fce4ec", // Light pink
 	];
-	const borderColors = [
-		"#7e57c2",
-		"#00897b",
-		"#f57c00",
-		"#43a047",
-		"#1976d2",
-		"#d81b60",
-	];
+
+	const handlePdfViewer = () => {
+		setPdfModalOpen(true);
+		setPdfError(false);
+	};
+
+	const handleClosePdf = () => {
+		setPdfModalOpen(false);
+		setPdfError(false);
+	};
+
+	const handlePdfError = () => {
+		setPdfError(true);
+	};
+
+	const handleDownloadPdf = () => {
+		const link = document.createElement("a");
+		link.href = "/assets/NewlinePlus_.pdf";
+		link.download = "NewlinePlus_Specifications.pdf";
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	};
+
+	const handleOpenInNewTab = () => {
+		window.open("/assets/NewlinePlus_.pdf", "_blank");
+	};
 
 	return (
-		<Box
-			sx={{
-				width: "100%",
-				overflowX: "auto",
-				textAlign: "start",
-				display: "grid",
-			}}
-		>
+		<Box sx={{ width: "100%",}}>
 			<Typography
 				variant="h4"
 				sx={{
@@ -402,122 +436,256 @@ const DisplaySpecsTable = () => {
 					background: "linear-gradient(to right, #3b82f6, #8b5cf6)",
 					WebkitBackgroundClip: "text",
 					WebkitTextFillColor: "transparent",
-                      fontFamily: 'Poppins-SemiBold',
-                      color: '#8b5cf6'
+                    fontFamily: 'Poppins-SemiBold',
+                     color: '#8b5cf6'
 				}}
 			>
 				Display Specifications Comparison
 			</Typography>
 
-			<TableContainer component={Paper} elevation={6}>
-				<Table>
-					<TableHead>
-						<TableRow
-							sx={{ background: "linear-gradient(to right, #00519C, #0F2A6AFF)" }}
-						>
-							<TableCell
-								sx={{
-									color: "#fff",
-									fontWeight: "bold",
-									border: "2px solid #334155",
-								}}
-							>
-								Category
-							</TableCell>
-							<TableCell
-								sx={{
-									color: "#fff",
-									fontWeight: "bold",
-									border: "2px solid #334155",
-								}}
-							>
-								Specification
-							</TableCell>
-							{screenSizes.map((size, _i) => (
-								<TableCell
-									key={size}
-									sx={{
-										color: "#fff",
-										fontWeight: "bold",
-										border: "2px solid #334155",
-										textAlign: "center",
-                                          fontFamily: 'Poppins-SemiBold'
-									}}
-								>
-									{size}
-								</TableCell>
-							))}
-						</TableRow>
-					</TableHead>
-
-					<TableBody>
-						{tableData.map((category, catIndex) =>
-							category.specifications.map((spec, specIndex) => (
-								<TableRow
-									key={`${catIndex}-${specIndex}`}
-									sx={{
-										"&:hover": {
-											backgroundColor: "#f1f5f9",
-										},
-									}}
-								>
-									{specIndex === 0 && (
+			<Box
+				sx={{
+					width: "100%",
+					overflowX: "auto",
+					textAlign: "start",
+					display: "grid",
+				}}
+			>
+				{" "}
+				<Card elevation={3} sx={{ mb: 3 }}>
+					<CardContent sx={{ p: 0 }}>
+						<TableContainer component={Paper} sx={{ maxHeight: "70vh" }}>
+							<Table stickyHeader>
+								<TableHead>
+									<TableRow>
 										<TableCell
-											rowSpan={category.specifications.length}
 											sx={{
-												writingMode:
-													category.specifications.length > 4
-														? "vertical-rl"
-														: "horizontal-tb",
-												backgroundColor:
-													categoryColors[catIndex % categoryColors.length],
-												border: `2px solid ${
-													borderColors[catIndex % borderColors.length]
-												}`,
+												backgroundColor: "#1976d2",
+												color: "white",
 												fontWeight: "bold",
-												textAlign: "center",
-                                                  fontFamily: 'Poppins-SemiBold'
+												minWidth: 120,
 											}}
 										>
-											{category.category}
+											Category
 										</TableCell>
-									)}
-									<TableCell
-										sx={{
-											backgroundColor: `${
-												categoryColors[catIndex % categoryColors.length]
-											}80`,
-											border: `1px solid ${
-												borderColors[catIndex % borderColors.length]
-											}50`,
-											fontWeight: "bold",
-											color: "#00519C",
-                                              fontFamily: 'Poppins-SemiBold'
-										}}
-									>
-										{spec.spec}
-									</TableCell>
-									{spec.values.map((value, idx) => (
 										<TableCell
-											key={idx}
 											sx={{
-												border: "1px solid #e2e8f0",
-												fontSize: "0.9rem",
-												color: value === "N/A" ? "#9ca3af" : "#1f2937",
-												fontStyle: value === "N/A" ? "italic" : "normal",
-												textAlign: "center",
-                                                  fontFamily: 'Poppins-Regular'
+												backgroundColor: "#1976d2",
+												color: "white",
+												fontWeight: "bold",
+												minWidth: 200,
 											}}
 										>
-											{value}
+											Specification
 										</TableCell>
-									))}
-								</TableRow>
-							))
-						)}
-					</TableBody>
-				</Table>
-			</TableContainer>
+										{screenSizes.map((size) => (
+											<TableCell
+												key={size}
+												align="center"
+												sx={{
+													backgroundColor: "#1976d2",
+													color: "white",
+													fontWeight: "bold",
+													minWidth: 120,
+												}}
+											>
+												{size}
+											</TableCell>
+										))}
+									</TableRow>
+								</TableHead>
+
+								<TableBody>
+									{tableData.map((category, catIndex) =>
+										category.specifications.map((spec, specIndex) => (
+											<TableRow
+												key={`${catIndex}-${specIndex}`}
+												hover
+												sx={{ "&:hover": { backgroundColor: "#f5f5f5" } }}
+											>
+												{specIndex === 0 && (
+													<TableCell
+														rowSpan={category.specifications.length}
+														sx={{
+															backgroundColor:
+																categoryColors[
+																	catIndex % categoryColors.length
+																],
+															fontWeight: "bold",
+															textAlign: "center",
+															verticalAlign: "middle",
+															borderRight: "2px solid #e0e0e0",
+															writingMode:
+																category.specifications.length > 4
+																	? "vertical-rl"
+																	: "horizontal-tb",
+															textOrientation: "mixed",
+														}}
+													>
+														<Typography variant="body2" fontWeight="bold">
+															{category.category}
+														</Typography>
+													</TableCell>
+												)}
+												<TableCell
+													sx={{
+														backgroundColor: `${
+															categoryColors[catIndex % categoryColors.length]
+														}80`,
+														fontWeight: "bold",
+														color: "#1976d2",
+													}}
+												>
+													<Typography variant="body2" fontWeight="bold">
+														{spec.spec}
+													</Typography>
+												</TableCell>
+												{spec.values.map((value, idx) => (
+													<TableCell
+														key={idx}
+														align="center"
+														sx={{
+															fontSize: "0.875rem",
+															color: value === "N/A" ? "#9e9e9e" : "#333",
+														}}
+													>
+														{value === "N/A" ? (
+															<Chip
+																label="N/A"
+																size="small"
+																variant="outlined"
+																color="default"
+															/>
+														) : (
+															<Typography variant="body2">{value}</Typography>
+														)}
+													</TableCell>
+												))}
+											</TableRow>
+										))
+									)}
+								</TableBody>
+							</Table>
+						</TableContainer>
+					</CardContent>
+				</Card>
+			</Box>
+
+			{/* PDF Viewer Button */}
+			<Box display="flex" justifyContent="center" sx={{ mb: 2 }}>
+				<Button
+					variant="contained"
+					size="large"
+					onClick={handlePdfViewer}
+					startIcon={<PictureAsPdf />}
+					sx={{
+						background: "linear-gradient(45deg, #1976d2 30%, #1565c0 90%)",
+						boxShadow: "0 3px 5px 2px rgba(25, 118, 210, .3)",
+						"&:hover": {
+							background: "linear-gradient(45deg, #1565c0 30%, #0d47a1 90%)",
+							transform: "translateY(-2px)",
+							boxShadow: "0 6px 10px 4px rgba(25, 118, 210, .3)",
+						},
+						transition: "all 0.3s ease",
+					}}
+				>
+					View PDF Specifications
+				</Button>
+			</Box>
+
+			{/* PDF Viewer Modal */}
+			<Dialog
+				open={pdfModalOpen}
+				onClose={handleClosePdf}
+				maxWidth="lg"
+				fullWidth
+				PaperProps={{
+					sx: { height: "90vh" },
+				}}
+			>
+				<AppBar
+					position="static"
+					sx={{
+						background: "linear-gradient(45deg, #1976d2 30%, #1565c0 90%)",
+					}}
+				>
+					<Toolbar>
+						<Typography variant="h6" component="div" sx={{ flexGrow: 1, fontFamily:'Poppins-SemiBold' }}>
+							Display Specifications PDF
+						</Typography>
+						<IconButton
+							color="inherit"
+							onClick={handleDownloadPdf}
+							title="Download PDF"
+						>
+							<Download />
+						</IconButton>
+						<IconButton
+							color="inherit"
+							onClick={handleOpenInNewTab}
+							title="Open in New Tab"
+						>
+							<OpenInNew />
+						</IconButton>
+						<IconButton color="inherit" onClick={handleClosePdf} title="Close">
+							<Close />
+						</IconButton>
+					</Toolbar>
+				</AppBar>
+
+				<DialogContent sx={{ p: 0, height: "100%" }}>
+					{!pdfError ? (
+						<Box sx={{ width: "100%", height: "100%" }}>
+							<iframe
+								src={PDF_}
+								style={{ width: "100%", height: "100%", border: "none" }}
+								title="Display Specifications PDF"
+								onError={handlePdfError}
+							/>
+						</Box>
+					) : (
+						<Box
+							display="flex"
+							flexDirection="column"
+							alignItems="center"
+							justifyContent="center"
+							sx={{ height: "100%", p: 4 }}
+						>
+							<Description sx={{ fontSize: 64, color: "#9e9e9e", mb: 2 }} />
+							<Typography variant="h5" gutterBottom>
+								PDF Not Available
+							</Typography>
+							<Alert severity="warning" sx={{ mb: 3, maxWidth: 500 }}>
+								<AlertTitle>PDF Could Not Be Loaded</AlertTitle>
+								This might be due to:
+								<ul style={{ margin: "8px 0", paddingLeft: "20px" }}>
+									<li>File path is incorrect</li>
+									<li>PDF file is missing from the assets folder</li>
+									<li>Browser security restrictions</li>
+								</ul>
+							</Alert>
+							<Box display="flex" gap={2}>
+								<Button
+									variant="contained"
+									onClick={handleDownloadPdf}
+									startIcon={<Download />}
+									color="primary"
+								>
+									Try Download
+								</Button>
+								<Button
+									variant="outlined"
+									onClick={handleOpenInNewTab}
+									startIcon={<OpenInNew />}
+									color="secondary"
+								>
+									Open in New Tab
+								</Button>
+							</Box>
+						</Box>
+					)}
+				</DialogContent>
+			</Dialog>
 		</Box>
 	);
 };
