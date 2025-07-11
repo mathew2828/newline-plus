@@ -46,11 +46,9 @@ function Home() {
 		return () => clearTimeout(timer);
 	}, []);
 
-	// Add to your component's state and refs:
 	const logoRef = useRef<HTMLDivElement>(null);
 	const [logoVisible, setLogoVisible] = useState(false);
 
-	// Extend useEffect to observe logoRef
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			(entries) => {
@@ -105,7 +103,7 @@ function Home() {
 		{
 			title: "INTERACTIVE SMARTBOARD",
 			description:
-				"A UHD display that blends sleek design with smart functionality. Its ultra-thin metal frame and anti-glare toughened glass ensure durability and clear visibility. With high-precision infrared touch, it offers smooth interaction for classrooms or offices",
+				"A 4K display that blends sleek design with smart functionality. Its ultra-thin metal frame and anti-glare toughened glass ensure durability and clear visibility. With high-precision infrared touch, it offers smooth interaction for classrooms or offices",
 			image: interactImage,
 			features: [
 				"Modular design",
@@ -270,43 +268,67 @@ function Home() {
 					sx={{ px: { xs: "1.4rem", sm: "3rem", md: "4rem" } }}
 				>
 					<Box sx={{ mb: 6, paddingTop: "6rem" }}>
-						<Typography
-							variant="h2"
-							sx={{
-								fontWeight: "bold",
-								mb: 2,
-								color: "#333",
-								fontFamily: "Poppins-SemiBold",
-								fontSize: {
-									xs: "2.5rem",
-									sm: "3rem",
-									md: "3.8rem",
-									lg: "4.2rem",
-								},
-								transition: "transform 0.3s ease",
-							}}
-						>
-							Featured Products
-						</Typography>
-						<Typography
-							variant="h6"
-							sx={{
-								color: "#666",
-								maxWidth: "800px",
-								mx: "auto",
-								fontFamily: "Poppins-Light",
-								fontSize: {
-									xs: "0.8rem",
-									sm: "1rem",
-									md: "1.2rem",
-									lg: "1.3rem",
-								},
-								transition: "transform 0.3s ease",
-							}}
-						>
-							Discover our comprehensive range of digital display and printing
-							solutions designed to elevate your business presence
-						</Typography>
+						<Zoom in={true} timeout={1000} style={{ transitionDelay: "200ms" }}>
+							<Typography
+								variant="h5"
+								sx={{
+									color: "#666",
+									maxWidth: { xs: "250px", sm: "400px", lg: "800px" },
+									mx: "auto",
+									fontFamily: "Disolve_regular",
+									fontSize: {
+										xs: "0.9rem",
+										sm: "1rem",
+										md: "1.1rem",
+										lg: "1.2rem",
+									},
+									transition: "transform 0.3s ease",
+								}}
+							>
+								NEWLINE PLUS
+							</Typography>
+						</Zoom>
+						<Zoom in={true} timeout={1000} style={{ transitionDelay: "200ms" }}>
+							<Typography
+								variant="h2"
+								sx={{
+									fontWeight: "bold",
+									mb: 2,
+									color: "#333",
+									fontFamily: "Poppins-SemiBold",
+									fontSize: {
+										xs: "2.5rem",
+										sm: "3rem",
+										md: "3.8rem",
+										lg: "4.2rem",
+									},
+									transition: "transform 0.3s ease",
+								}}
+							>
+								Featured Products
+							</Typography>
+						</Zoom>
+						<Zoom in={true} timeout={1000} style={{ transitionDelay: "200ms" }}>
+							<Typography
+								variant="h6"
+								sx={{
+									color: "#666",
+									maxWidth: "800px",
+									mx: "auto",
+									fontFamily: "Poppins-Light",
+									fontSize: {
+										xs: "0.8rem",
+										sm: "1rem",
+										md: "1.2rem",
+										lg: "1.3rem",
+									},
+									transition: "transform 0.3s ease",
+								}}
+							>
+								Discover our comprehensive range of digital display and printing
+								solutions designed to elevate your business presence
+							</Typography>
+						</Zoom>
 					</Box>
 
 					<Grid
@@ -314,12 +336,17 @@ function Home() {
 						spacing={4}
 						sx={{
 							paddingBottom: { xs: "6rem", md: "9rem" },
-							px: { xs: "1rem", lg: "10rem" },
+							px: { xs: "1rem", md: "rem", lg: "7rem" },
 							placeContent: "center",
+							pt: "2rem",
 						}}
 					>
 						{products.map((product, index) => (
-							<Grid key={index} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+							<Grid
+								key={index}
+								size={{ xs: 12, sm: 12, md: 6, lg: 6 }}
+								sx={{ textAlign: "start", transition: "all 0.4s ease" }}
+							>
 								<div
 									ref={(el: HTMLDivElement | null) => {
 										cardRefs.current[index] = el;
@@ -330,7 +357,7 @@ function Home() {
 									<Grow in={visibleCards[index]} timeout={1000}>
 										<Card
 											sx={{
-												maxWidth: { sm: "800px", md: "380px", lg: "480px" },
+												maxWidthidth: { sm: "800px", md: "150px", lg: "450px" },
 												height: "100%",
 												borderRadius: 3,
 												overflow: "hidden",
@@ -366,7 +393,7 @@ function Home() {
 															fontSize: {
 																xs: "1.2rem",
 																sm: "1.5",
-																md: "1.6rem",
+																md: "1.5rem",
 																lg: "1.7rem",
 															},
 															transition: "all 0.4s ease",
@@ -404,7 +431,7 @@ function Home() {
 																fontFamily: "Poppins-Light",
 																py: "1rem",
 																borderRadius: 2,
-																backgroundColor: "#4BA8FF",
+																backgroundColor: "#046CCEFF",
 																color: "#ffffff",
 																mr: 2,
 																mb: 1,
@@ -431,10 +458,11 @@ function Home() {
 					<Box
 						ref={logoRef}
 						sx={{
-							paddingBottom: 20,
+							paddingBottom: 5,
 							backgroundColor: "#ffffff",
 							textAlign: "center",
 							px: 2,
+							pb: 16
 						}}
 					>
 						<Slide direction="up" in={logoVisible} timeout={1200}>
@@ -495,6 +523,8 @@ function Home() {
 					</Box>
 				</Container>
 			</Box>
+
+			
 
 			{/* Call to Action */}
 			<Box sx={{ background: "#00519C", color: "white" }}>

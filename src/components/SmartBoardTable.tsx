@@ -571,7 +571,7 @@ const DisplaySpecsTable = () => {
 				</Card>
 			</Box>
 
-			{/* PDF Viewer Button */}
+			{/* PDF */}
 			<Box display="flex" justifyContent="center" sx={{ mb: 2 }}>
 				<Button
 					variant="contained"

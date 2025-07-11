@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DrawerAppBar from "./components/AppBar";
 import Home from "./Home";
 import Products from "./Products";
+import ContactUs from "./ContactUs";
 
 function App() {
   return (
@@ -20,6 +21,14 @@ function App() {
           element={
             <DrawerAppBar>
               <Products />
+            </DrawerAppBar>
+          }
+        />
+         <Route
+          path="/contactUs"
+          element={
+            <DrawerAppBar>
+              <ContactUs />
             </DrawerAppBar>
           }
         />
